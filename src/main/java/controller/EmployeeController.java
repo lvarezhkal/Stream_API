@@ -13,5 +13,4 @@ import java.util.Collection;
 @RequestMapping("/employee")
 public class EmployeeController {
 
-
 }
