@@ -13,4 +13,6 @@ public interface EmployeeService {
 
     Collection<Employee> findAllEmployees();
 
+    Employee add(String firstName, String lastName, int salary);
+
 }

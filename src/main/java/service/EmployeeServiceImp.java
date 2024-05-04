@@ -49,6 +49,11 @@ public  class EmployeeServiceImp implements EmployeeService {
     }
 
     @Override
+    public Employee add(String firstName, String lastName, int salary) {
+        return null;
+    }
+
+    @Override
     public Employee removeEmployee(String firstName, String lastName) {
 
         validateInput(firstName, lastName);
