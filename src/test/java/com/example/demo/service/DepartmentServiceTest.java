@@ -1,13 +1,10 @@
 package com.example.demo.service;
 
 import Model.Employee;
-
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-
 import service.DepartmentService;
-
 import service.EmployeeService;
 
 import java.util.List;
@@ -22,12 +19,10 @@ public class DepartmentServiceTest {
     @Mock
     private EmployeeService employeeService;
 
-    private List<Employee> employees = List.of(new Employee("Vlad", "Efimov", 11111, 1),
-            new Employee("Petr", "Ivanov", 32200, 1),
-            new Employee("Ivan", "Ivanov", 14880, 2));
+    private List<Employee> employees = List.of(new Employee("Vlad", "Efimov", 11111, 1), new Employee("Petr", "Ivanov", 32200, 1), new Employee("Ivan", "Ivanov", 14880, 2));
 
     @Test
-    public void shouldReturnEmployeeWithMaxSalary (){
+    public void shouldReturnEmployeeWithMaxSalary() {
 
         when(employeeService.findAllEmployees()).thenReturn(employees);
         Employee employee = departmentService.findEmployeeMaxSalaryByDepartment(1);
@@ -37,7 +32,7 @@ public class DepartmentServiceTest {
     }
 
     @Test
-    public void shouldReturnEmployeeWithMInSalary (){
+    public void shouldReturnEmployeeWithMInSalary() {
 
         when(employeeService.findAllEmployees()).thenReturn(employees);
         Employee employee = departmentService.findEmployeeMinSalaryByDepartment(1);
@@ -45,8 +40,9 @@ public class DepartmentServiceTest {
         assertEquals("Petr", employee.getFirstName());
         assertEquals("Ivanov", employee.getLastName());
     }
+
     @Test
-    public void shouldReturnAllEmployeeGroupedByDepartment (){
+    public void shouldReturnAllEmployeeGroupedByDepartment() {
         when(employeeService.findAllEmployees()).thenReturn(employees);
 
         Map<Integer, List<Employee>> result = departmentService.findEmployeeByDepartment();

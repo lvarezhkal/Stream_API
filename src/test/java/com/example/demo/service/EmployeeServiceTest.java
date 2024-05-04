@@ -8,7 +8,6 @@ import service.EmployeeService;
 import service.EmployeeServiceImp;
 
 import javax.naming.InvalidNameException;
-
 import java.util.Collection;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -16,12 +15,12 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class EmployeeServiceTest {
 
-    private EmployeeService service = new EmployeeServiceImp();
+    private final EmployeeService service = new EmployeeServiceImp();
 
     @Test
-    public void shouldAddNewEmployee (){
+    public void shouldAddNewEmployee() {
 
-        Employee employee = service.add("Vlad", "Efimov", 11111 );
+        Employee employee = service.add("Vlad", "Efimov", 11111);
         assertEquals("Vlad", employee.getFirstName());
         assertEquals("Efimov", employee.getLastName());
         assertEquals(11111, employee.getSalary());
@@ -29,20 +28,22 @@ public class EmployeeServiceTest {
 
 
     }
+
     @Test
-    public void shouldThrowExceptionsWhenNameIsNotNumeric(){
-        assertThrows(InvalidNameException.class, () -> service.add ("10", "Efimov", 11111 ));
-        assertThrows(InvalidNameException.class, () -> service.add ("Vlad", "8", 11111 ));
+    public void shouldThrowExceptionsWhenNameIsNotNumeric() {
+        assertThrows(InvalidNameException.class, () -> service.add("10", "Efimov", 11111));
+        assertThrows(InvalidNameException.class, () -> service.add("Vlad", "8", 11111));
     }
+
     @Test
-    public void shouldThrowExceptionsWhenAddingEmployee(){
+    public void shouldThrowExceptionsWhenAddingEmployee() {
         service.add("Vlad", "Efimov", 11111);
 
-        assertThrows(EmployeeAlreadyAddedException.class, ()-> service.add("Vlad", "Efimov", 11111));
+        assertThrows(EmployeeAlreadyAddedException.class, () -> service.add("Vlad", "Efimov", 11111));
     }
 
     @Test
-    public void shouldFindEmployee (){
+    public void shouldFindEmployee() {
         service.add("Vlad", "Efimov", 11111);
         Employee employee = service.findEmployee("Vlad", "Efimov");
 
@@ -52,13 +53,13 @@ public class EmployeeServiceTest {
     }
 
     @Test
-    public void shouldThrowExceptionsWhenEmployeeNotExist (){
-        assertThrows(EmployeeNotFoundException.class, ()-> service.findEmployee("Vlad", "Efimov"));
+    public void shouldThrowExceptionsWhenEmployeeNotExist() {
+        assertThrows(EmployeeNotFoundException.class, () -> service.findEmployee("Vlad", "Efimov"));
     }
 
     @Test
-    public void shouldRemoveEmployee (){
-        service.add("Vlad", "Efimov", 11111 );
+    public void shouldRemoveEmployee() {
+        service.add("Vlad", "Efimov", 11111);
 
         service.removeEmployee("Vlad", "Efimov");
 
@@ -67,13 +68,13 @@ public class EmployeeServiceTest {
     }
 
     @Test
-    public void shouldThrowExceptionsDeletingNonExistingEmployee (){
+    public void shouldThrowExceptionsDeletingNonExistingEmployee() {
 
         assertThrows(EmployeeNotFoundException.class, () -> service.removeEmployee("Vlad", "Efimov"));
     }
 
     @Test
-    public void shouldReturnAllEmployee (){
+    public void shouldReturnAllEmployee() {
         Employee addedEmployee = service.add("Vlad", "Efimov", 11111);
         Collection<Employee> employees = service.findAllEmployees();
         assertEquals(1, employees.size());
