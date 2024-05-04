@@ -6,9 +6,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import service.DepartmentService;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 @RestController
 @RequestMapping("/departments")
 public class DepartmentController {
@@ -34,7 +31,7 @@ public class DepartmentController {
     }
 
     @GetMapping
-    public Map<Integer, List<Employee>> findAll(){
+    public Map<Integer, List<Employee>> findAll() {
         return departmentService.findAll();
     }
 }

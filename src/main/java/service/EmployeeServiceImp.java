@@ -1,6 +1,10 @@
 package service;
 
 import Model.Employee;
+import exception.EmployeeAlreadyAddedException;
+import exception.EmployeeNotFoundException;
+import exception.InvalidInputException;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -8,13 +12,11 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.apache.tomcat.util.http.parser.HttpParser.isAlpha;
-
 @Service
 public  class EmployeeServiceImp implements EmployeeService {
     private final Map<String, Employee> employeeMap;
 
-    public EmployeeServiceImpl() {
+    public EmployeeServiceImp() {
         this.employeeMap = new HashMap<>();
     }
     @Override
@@ -55,9 +57,11 @@ public  class EmployeeServiceImp implements EmployeeService {
         return new Employee(firstName,lastName);
     }
 
-    private void validateInput(String firsName, String lastName) {
-        if(!(isAlpha(Integer.parseInt(firsName))&&isAlpha(Integer.parseInt(lastName)))){
-            throw new InvalidInputException("incorrect name or surname");
+
+
+    private void validateInput (String firstName, String lastName) {
+        if (!(StringUtils.isAlpha(firstName) && StringUtils.isAlpha(lastName))) {
+            throw new InvalidInputException();
         }
     }
 }

@@ -56,6 +56,7 @@ public class Employee {
         Model.Employee.Employee employee = (Model.Employee.Employee) o;
         return Objects.equals(firstName, employee.firstName) && Objects.equals(lastName, employee.lastName);
     }
+
     @Override
     public int hashCode() {
         return Objects.hash(firstName, lastName);
@@ -114,6 +115,7 @@ public class Employee {
             Model.Employee.Employee employee = (Model.Employee.Employee) o;
             return Objects.equals(firstName, employee.firstName) && Objects.equals(lastName, employee.lastName);
         }
+
         @Override
         public int hashCode() {
             return Objects.hash(firstName, lastName);

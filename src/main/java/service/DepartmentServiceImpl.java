@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 
 public class DepartmentServiceImpl implements DepartmentService {
     private EmployeeService employeeService;
+
     public void DepartmentServiceImpl(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
@@ -17,21 +18,21 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public Optional<Employee> findEmployeeMinSalaryByDepartment(int department) {
         return employeeService.findAllEmployees().stream()
-                .filter(employee -> employee.getDepartment()==department)
+                .filter(employee -> employee.getDepartment() == department)
                 .min(Comparator.comparingInt(Employee::getSalary));
     }
 
     @Override
     public Optional<Employee> findEmployeeMaxSalaryByDepartment(int department) {
         return employeeService.findAllEmployees().stream()
-                .filter(employee -> employee.getDepartment()==department)
+                .filter(employee -> employee.getDepartment() == department)
                 .max(Comparator.comparingInt(Employee::getSalary));
     }
 
     @Override
     public List<Employee> allEmployeesByDepartment(int department) {
         return employeeService.findAllEmployees().stream()
-                .filter(employee -> employee.getDepartment()==department).toList()
+                .filter(employee -> employee.getDepartment() == department).toList()
                 ;
     }
 
